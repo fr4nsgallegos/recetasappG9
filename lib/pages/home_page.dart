@@ -87,6 +87,10 @@ class _HomePageState extends State<HomePage> {
                         urlImage: item["urlImage"]),
                   )
                   .toList(),
+              //USANDO GIFFFFFFF
+              // Image.asset("assets/gifts/ave.gif"),
+              // Image.network(
+              //     "https://media1.tenor.com/m/X_g_8OeObRIAAAAC/download.gif"),
               // FoodCardWidget(
               //     titulo: "Wafles",
               //     descripcion:
