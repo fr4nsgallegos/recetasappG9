@@ -94,14 +94,27 @@ class _HomePageState extends State<HomePage> {
               //           urlImage: item["urlImage"]),
               //     )
               //     .toList(),
-              ...foodModelList
-                  .map(
-                    (item) => FoodCardWidget(
-                        titulo: item.title,
-                        descripcion: item.description,
-                        urlImage: item.urlImage),
-                  )
-                  .toList(),
+              // ...foodModelList
+              //     .map(
+              //       (item) => FoodCardWidget(
+              //           titulo: item.title,
+              //           descripcion: item.description,
+              //           urlImage: item.urlImage),
+              //     )
+              //     .toList(),
+
+              SizedBox(
+                height: 400,
+                child: ListView.builder(
+                  itemCount: foodModelList.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    return FoodCardWidget(
+                        titulo: foodModelList[index].title,
+                        descripcion: foodModelList[index].description,
+                        urlImage: foodModelList[index].urlImage);
+                  },
+                ),
+              ),
               //USANDO GIFFFFFFF
               // Image.asset("assets/gifts/ave.gif"),
               // Image.network(

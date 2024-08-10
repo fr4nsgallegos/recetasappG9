@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 class FoodCardWidget extends StatelessWidget {
-  String titulo;
-  String descripcion;
-  String urlImage;
+  String? titulo;
+  String? descripcion;
+  String? urlImage;
 
   FoodCardWidget({
     required this.titulo,
@@ -13,18 +13,19 @@ class FoodCardWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      margin: EdgeInsets.only(bottom: 16),
       padding: EdgeInsets.all(16),
       color: Colors.black.withOpacity(0.4),
       child: Column(
         children: [
-          Image.network(urlImage),
+          Image.network(urlImage ?? "-"),
           Text(
-            titulo,
+            titulo ?? "-",
             style: TextStyle(
                 color: Colors.white, fontSize: 20, fontWeight: FontWeight.w500),
           ),
           Text(
-            descripcion,
+            descripcion ?? "-",
             maxLines: 3,
             overflow: TextOverflow.ellipsis,
             style: TextStyle(
