@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:recetasappg9/widgets/food_card_widget.dart';
 import 'package:recetasappg9/widgets/form_widget.dart';
 
 class HomePage extends StatelessWidget {
@@ -39,6 +40,33 @@ class HomePage extends StatelessWidget {
                 controller: urlImageController,
                 svg: "urlImage",
               ),
+              SizedBox(
+                height: 45,
+                width: MediaQuery.of(context).size.width / 2,
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                      backgroundColor: Color(0xffEDA971)),
+                  onPressed: () {},
+                  child: Text("Agregar"),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 8),
+                child: Text(
+                  "Listado general",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 22,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+              FoodCardWidget(
+                  titulo: "Wafles",
+                  descripcion:
+                      "Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente i",
+                  urlImage:
+                      "https://images.pexels.com/photos/376464/pexels-photo-376464.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1")
             ],
           ),
         ),
