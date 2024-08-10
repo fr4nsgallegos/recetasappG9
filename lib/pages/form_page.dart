@@ -1,7 +1,34 @@
 import 'package:flutter/material.dart';
 
-class FormPage extends StatelessWidget {
+class FormPage extends StatefulWidget {
+  @override
+  State<FormPage> createState() => _FormPageState();
+}
+
+class _FormPageState extends State<FormPage> {
   final _formKey = GlobalKey<FormState>();
+
+  TextEditingController _controller = TextEditingController();
+
+  String? _titleErrorText;
+
+  void _validateTitle(String? value) {
+    if (value == null || value.isEmpty || value == "") {
+      _titleErrorText = "El título no debe estar vacio";
+      setState(() {});
+    } else if (isValidTitle(value) == false) {
+      _titleErrorText = "Se excedió el tamaño del título";
+      setState(() {});
+    } else {
+      _titleErrorText = null;
+      setState(() {});
+    }
+  }
+
+  void _submitForm() {
+    _validateTitle(_controller.text);
+    print(_formKey.currentState?.validate() ?? "esnull");
+  }
 
   bool isValidTitle(String title) {
     // Si encuentra una coincidencia devuelve TRUE
@@ -11,7 +38,6 @@ class FormPage extends StatelessWidget {
     //OJO la expresion regular es ^.{1,10}$
   }
 
-  TextEditingController _controller = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,6 +51,10 @@ class FormPage extends StatelessWidget {
             Form(
               key: _formKey,
               child: TextFormField(
+                validator: (value) => _titleErrorText,
+                onChanged: (textoField) {
+                  return _validateTitle(textoField);
+                },
                 controller: _controller,
                 decoration: InputDecoration(
                   contentPadding:
@@ -43,9 +73,6 @@ class FormPage extends StatelessWidget {
                     borderSide: BorderSide.none,
                   ),
                 ),
-                onChanged: (textoField) {
-                  print(textoField);
-                },
               ),
             ),
             SizedBox(
@@ -57,7 +84,8 @@ class FormPage extends StatelessWidget {
               child: ElevatedButton(
                 onPressed: () {
                   // print(_controller.text);
-                  print(isValidTitle("Eclipse"));
+                  // print(isValidTitle("Eclipse"));
+                  _submitForm();
                 },
                 child: Text("Agregar"),
                 style: ElevatedButton.styleFrom(
