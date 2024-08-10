@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:recetasappg9/models/food_model.dart';
+import 'package:recetasappg9/pages/form_page.dart';
+import 'package:recetasappg9/pages/scroll_page.dart';
 import 'package:recetasappg9/widgets/food_card_widget.dart';
 import 'package:recetasappg9/widgets/form_widget.dart';
 
@@ -22,6 +24,16 @@ class _HomePageState extends State<HomePage> {
     return SafeArea(
       child: Scaffold(
         backgroundColor: Color(0xff29304B),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (BuildContext context) => FormPage(),
+              ),
+            );
+          },
+        ),
         appBar: AppBar(
           title: Text(
             "Mis Recetas",
@@ -50,7 +62,6 @@ class _HomePageState extends State<HomePage> {
                 svg: "urlImage",
               ),
               SizedBox(
-                height: 45,
                 width: MediaQuery.of(context).size.width / 2,
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
@@ -70,6 +81,9 @@ class _HomePageState extends State<HomePage> {
                     );
                     foodModelList.add(_foodModelAux);
                     setState(() {});
+                    titleController.clear();
+                    descriptionController.clear();
+                    urlImageController.clear();
                     // print(foodList.length);
                   },
                   child: Text("Agregar"),
@@ -103,8 +117,7 @@ class _HomePageState extends State<HomePage> {
               //     )
               //     .toList(),
 
-              SizedBox(
-                height: 400,
+              Expanded(
                 child: ListView.builder(
                   itemCount: foodModelList.length,
                   itemBuilder: (BuildContext context, int index) {

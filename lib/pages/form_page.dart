@@ -95,7 +95,12 @@ class _FormPageState extends State<FormPage> {
                   backgroundColor: Colors.orange,
                 ),
               ),
-            )
+            ),
+            ElevatedButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                child: Text("ATRAS"))
           ],
         ),
       ),
