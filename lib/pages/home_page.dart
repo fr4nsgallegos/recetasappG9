@@ -3,13 +3,19 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:recetasappg9/widgets/food_card_widget.dart';
 import 'package:recetasappg9/widgets/form_widget.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  TextEditingController titleController = TextEditingController();
+  TextEditingController descriptionController = TextEditingController();
+  TextEditingController urlImageController = TextEditingController();
+
+  List<Map<String, dynamic>> foodList = [];
   @override
   Widget build(BuildContext context) {
-    TextEditingController titleController = TextEditingController();
-    TextEditingController descriptionController = TextEditingController();
-    TextEditingController urlImageController = TextEditingController();
-
     return SafeArea(
       child: Scaffold(
         backgroundColor: Color(0xff29304B),
@@ -46,7 +52,19 @@ class HomePage extends StatelessWidget {
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
                       backgroundColor: Color(0xffEDA971)),
-                  onPressed: () {},
+                  onPressed: () {
+                    foodList.add(
+                      {
+                        "title": "Wafles",
+                        "description":
+                            "Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente i",
+                        "urlImage":
+                            "https://images.pexels.com/photos/376464/pexels-photo-376464.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                      },
+                    );
+                    setState(() {});
+                    print(foodList.length);
+                  },
                   child: Text("Agregar"),
                 ),
               ),
@@ -61,12 +79,20 @@ class HomePage extends StatelessWidget {
                   ),
                 ),
               ),
-              FoodCardWidget(
-                  titulo: "Wafles",
-                  descripcion:
-                      "Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente i",
-                  urlImage:
-                      "https://images.pexels.com/photos/376464/pexels-photo-376464.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1")
+              ...foodList
+                  .map(
+                    (item) => FoodCardWidget(
+                        titulo: item["title"],
+                        descripcion: item["description"],
+                        urlImage: item["urlImage"]),
+                  )
+                  .toList(),
+              // FoodCardWidget(
+              //     titulo: "Wafles",
+              //     descripcion:
+              //         "Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente i",
+              //     urlImage:
+              //         "https://images.pexels.com/photos/376464/pexels-photo-376464.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1")
             ],
           ),
         ),
