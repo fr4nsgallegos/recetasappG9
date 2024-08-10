@@ -8,17 +8,55 @@ class RetosContainerPage extends StatelessWidget {
         title: Text("RETOS CONTAINER"),
         centerTitle: true,
       ),
-      body: SingleChildScrollView(
-        child: Center(
-          child: Column(
-            children: [
-              IAmHeader(),
-              Helipuerto(),
-              challengeCotainer(),
-              challengeGradient(context),
-            ],
+      body: Stack(
+        children: [
+          Container(
+            height: MediaQuery.of(context).size.height,
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                colors: [
+                  Colors.blue, // Color superior
+                  Colors.red, // Color inferior
+                ],
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+                stops: [0.0, 1.0], // Controla dónde se detienen los colores
+              ),
+            ),
           ),
-        ),
+          SingleChildScrollView(
+            child: Column(
+              children: [
+                IAmHeader(),
+                Helipuerto(),
+                challengeCotainer(),
+                Container(
+                  margin: EdgeInsets.all(20),
+                  width: 250,
+                  height: 250,
+                  alignment: Alignment.bottomCenter,
+                  decoration: BoxDecoration(
+                    color: Colors.purple,
+                    borderRadius: BorderRadius.circular(15),
+                  ),
+                  child: Container(
+                    height: 100,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(15),
+                      color: Colors.cyan,
+                    ),
+                  ),
+                ),
+                challengeGradient(context),
+                challengeGradient(context),
+                challengeGradient(context),
+                challengeGradient(context),
+                challengeGradient(context),
+                challengeGradient(context),
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }
