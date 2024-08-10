@@ -4,7 +4,7 @@ import 'package:recetasappg9/pages/home_page.dart';
 
 void main() {
   runApp(MaterialApp(
-    home: FormPage(),
+    home: HomePage(),
     debugShowCheckedModeBanner: false,
   ));
 }
