@@ -3,17 +3,19 @@ import 'package:flutter/material.dart';
 class CalculatorButton extends StatelessWidget {
   String numero;
   Color backgroundColor;
+  VoidCallback function;
 
   CalculatorButton({
     required this.numero,
     required this.backgroundColor,
+    required this.function,
   });
 
   @override
   Widget build(BuildContext context) {
     return Expanded(
       child: OutlinedButton(
-        onPressed: () {},
+        onPressed: function,
         style: OutlinedButton.styleFrom(
           shape: CircleBorder(),
           backgroundColor: backgroundColor,

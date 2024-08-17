@@ -3,7 +3,35 @@ import 'dart:ffi';
 import 'package:flutter/material.dart';
 import 'package:recetasappg9/widgets/calculator_button.dart';
 
-class CalculatorPage extends StatelessWidget {
+class CalculatorPage extends StatefulWidget {
+  @override
+  State<CalculatorPage> createState() => _CalculatorPageState();
+}
+
+class _CalculatorPageState extends State<CalculatorPage> {
+  String answer = "";
+  String input = "";
+
+  void pressNumberButton(String number) {
+    input = input + number;
+  }
+
+  void buttonPressed(String textButton) {
+    if (textButton == "AC") {
+    } else if (textButton == "+" ||
+        textButton == "-" ||
+        textButton == "*" ||
+        textButton == "/") {
+    } else if (textButton == "=") {
+    } else if (textButton == '.') {
+    } else if (textButton == "<-") {
+    } else {
+      pressNumberButton(textButton);
+    }
+    answer = input;
+    setState(() {});
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -24,7 +52,7 @@ class CalculatorPage extends StatelessWidget {
                   borderRadius: BorderRadius.circular(25),
                 ),
                 child: Text(
-                  "456",
+                  answer,
                   style: TextStyle(color: Colors.white, fontSize: 65),
                 ),
               ),
@@ -33,13 +61,25 @@ class CalculatorPage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   CalculatorButton(
-                      numero: "1", backgroundColor: Color(0xff3E3E3E)),
+                    numero: "1",
+                    backgroundColor: Color(0xff3E3E3E),
+                    function: () => buttonPressed("1"),
+                  ),
                   CalculatorButton(
-                      numero: "2", backgroundColor: Color(0xff3E3E3E)),
+                    numero: "2",
+                    backgroundColor: Color(0xff3E3E3E),
+                    function: () => buttonPressed("2"),
+                  ),
                   CalculatorButton(
-                      numero: "3", backgroundColor: Color(0xff3E3E3E)),
+                    numero: "3",
+                    backgroundColor: Color(0xff3E3E3E),
+                    function: () => buttonPressed("3"),
+                  ),
                   CalculatorButton(
-                      numero: "/", backgroundColor: Color(0xffFF9F0A)),
+                    numero: "/",
+                    backgroundColor: Color(0xffFF9F0A),
+                    function: () => buttonPressed("/"),
+                  ),
                 ],
               ),
               SizedBox(height: 8),
@@ -47,13 +87,25 @@ class CalculatorPage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   CalculatorButton(
-                      numero: "4", backgroundColor: Color(0xff3E3E3E)),
+                    numero: "4",
+                    backgroundColor: Color(0xff3E3E3E),
+                    function: () => buttonPressed("4"),
+                  ),
                   CalculatorButton(
-                      numero: "5", backgroundColor: Color(0xff3E3E3E)),
+                    numero: "5",
+                    backgroundColor: Color(0xff3E3E3E),
+                    function: () => buttonPressed("5"),
+                  ),
                   CalculatorButton(
-                      numero: "6", backgroundColor: Color(0xff3E3E3E)),
+                    numero: "6",
+                    backgroundColor: Color(0xff3E3E3E),
+                    function: () => buttonPressed("6"),
+                  ),
                   CalculatorButton(
-                      numero: "*", backgroundColor: Color(0xffFF9F0A)),
+                    numero: "*",
+                    backgroundColor: Color(0xffFF9F0A),
+                    function: () => buttonPressed("*"),
+                  ),
                 ],
               ),
               SizedBox(height: 8),
@@ -61,13 +113,51 @@ class CalculatorPage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   CalculatorButton(
-                      numero: "7", backgroundColor: Color(0xff3E3E3E)),
+                    numero: "7",
+                    backgroundColor: Color(0xff3E3E3E),
+                    function: () => buttonPressed("7"),
+                  ),
                   CalculatorButton(
-                      numero: "8", backgroundColor: Color(0xff3E3E3E)),
+                    numero: "8",
+                    backgroundColor: Color(0xff3E3E3E),
+                    function: () => buttonPressed("8"),
+                  ),
                   CalculatorButton(
-                      numero: "9", backgroundColor: Color(0xff3E3E3E)),
+                    numero: "9",
+                    backgroundColor: Color(0xff3E3E3E),
+                    function: () => buttonPressed("9"),
+                  ),
                   CalculatorButton(
-                      numero: "-", backgroundColor: Color(0xffFF9F0A)),
+                    numero: "-",
+                    backgroundColor: Color(0xffFF9F0A),
+                    function: () => buttonPressed("-"),
+                  ),
+                ],
+              ),
+              SizedBox(height: 8),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  CalculatorButton(
+                    numero: ".",
+                    backgroundColor: Color(0xff3E3E3E),
+                    function: () => buttonPressed("."),
+                  ),
+                  CalculatorButton(
+                    numero: "0",
+                    backgroundColor: Color(0xff3E3E3E),
+                    function: () => buttonPressed("0"),
+                  ),
+                  CalculatorButton(
+                    numero: "<-",
+                    backgroundColor: Color(0xff3E3E3E),
+                    function: () => buttonPressed("<-"),
+                  ),
+                  CalculatorButton(
+                    numero: "+",
+                    backgroundColor: Color(0xffFF9F0A),
+                    function: () => buttonPressed("+"),
+                  ),
                 ],
               ),
               SizedBox(height: 8),
@@ -77,9 +167,15 @@ class CalculatorPage extends StatelessWidget {
                   Expanded(child: Container()),
                   Expanded(child: Container()),
                   CalculatorButton(
-                      numero: "9", backgroundColor: Color(0xff3E3E3E)),
+                    numero: "AC",
+                    backgroundColor: Color(0xff3E3E3E),
+                    function: () => buttonPressed("AC"),
+                  ),
                   CalculatorButton(
-                      numero: "-", backgroundColor: Color(0xffFF9F0A)),
+                    numero: "=",
+                    backgroundColor: Color(0xffFF9F0A),
+                    function: () => buttonPressed("="),
+                  ),
                 ],
               ),
             ],
