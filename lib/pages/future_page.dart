@@ -56,14 +56,37 @@ class _FuturePageState extends State<FuturePage> {
         child: Column(
           children: [
             Text(titulo),
-            ...productsList.map((product) {
-              return Container(
-                color: Colors.yellow,
-                margin: EdgeInsets.all(8),
-                padding: EdgeInsets.all(30),
-                child: Text(product),
-              );
-            }).toList(),
+            FutureBuilder(
+              future: getTitle(),
+              builder: (BuildContext context, AsyncSnapshot snapshot) {
+                print("SNAPSHOT : ${snapshot}");
+                print("CONENCTION STATE: ${snapshot.connectionState}");
+                print("CONENCTION HAS DATA: ${snapshot.hasData}");
+                print("ERROR: ${snapshot.hasError}");
+                print("DATA: ${snapshot.data}");
+
+                print(snapshot.data);
+                if (snapshot.hasData) {
+                  return Container(
+                    width: 200,
+                    height: 200,
+                    color: Colors.red,
+                    alignment: Alignment.center,
+                    child: Text(snapshot.data),
+                  );
+                } else {
+                  return SizedBox(
+                    height: 120,
+                    width: 120,
+                    child: CircularProgressIndicator(
+                      color: Colors.red,
+                      backgroundColor: Colors.amber,
+                      strokeWidth: 10,
+                    ),
+                  );
+                }
+              },
+            )
           ],
         ),
       ),
