@@ -13,18 +13,37 @@ class _CalculatorPageState extends State<CalculatorPage> {
   String input = "";
 
   void pressNumberButton(String number) {
-    input = input + number;
+    input != '0' ? input += number : input = number;
+    // input = input + number;
+  }
+
+  void pressACButton() {
+    answer = "0";
+    input = "0";
+  }
+
+  void pressDecimalButton() {
+    if (!input.contains(".")) {
+      input += ".";
+    }
+  }
+
+  void pressDeleteButton() {
+    answer.length != 0 ? input = input.substring(0, input.length - 1) : "0";
   }
 
   void buttonPressed(String textButton) {
     if (textButton == "AC") {
+      pressACButton();
     } else if (textButton == "+" ||
         textButton == "-" ||
         textButton == "*" ||
         textButton == "/") {
     } else if (textButton == "=") {
     } else if (textButton == '.') {
+      pressDecimalButton();
     } else if (textButton == "<-") {
+      pressDeleteButton();
     } else {
       pressNumberButton(textButton);
     }
