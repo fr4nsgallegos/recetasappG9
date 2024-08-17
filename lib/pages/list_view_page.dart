@@ -8,7 +8,9 @@ class ListViewPage extends StatelessWidget {
       child: Scaffold(
         body: Column(
           children: [
-            Text("Hola esta es mi lista de containers"),
+            Text(
+              "Hola esta es mi lista de containers",
+            ),
             Expanded(
               child: ListView.builder(
                 itemCount: names.length,

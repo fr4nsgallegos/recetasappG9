@@ -100,6 +100,8 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
               ),
+              Image.network(
+                  "https://images.pexels.com/photos/3049339/pexels-photo-3049339.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"),
               // ...foodList
               //     .map(
               //       (item) => FoodCardWidget(
