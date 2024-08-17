@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
 
 class ListViewPage extends StatelessWidget {
+  Color bgColor;
+  ListViewPage({required this.bgColor});
+
   List<String> names = ["Pedro", "Ana", "Juana", "Robert", "LUCIA"];
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        backgroundColor: bgColor,
         body: Column(
           children: [
             Text(

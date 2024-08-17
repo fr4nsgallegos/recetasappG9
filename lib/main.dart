@@ -11,7 +11,7 @@ import 'package:recetasappg9/pages/tabbar_page.dart';
 void main() {
   runApp(
     MaterialApp(
-      home: CalculatorPage(),
+      home: TabBarPage(),
       debugShowCheckedModeBanner: false,
     ),
   );

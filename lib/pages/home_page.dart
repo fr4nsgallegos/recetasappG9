@@ -7,6 +7,8 @@ import 'package:recetasappg9/widgets/food_card_widget.dart';
 import 'package:recetasappg9/widgets/form_widget.dart';
 
 class HomePage extends StatefulWidget {
+  Color bgColor;
+  HomePage({required this.bgColor});
   @override
   State<HomePage> createState() => _HomePageState();
 }
@@ -23,7 +25,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: Color(0xff29304B),
+        backgroundColor: widget.bgColor,
         floatingActionButton: FloatingActionButton(
           onPressed: () {
             Navigator.push(
@@ -34,14 +36,14 @@ class _HomePageState extends State<HomePage> {
             );
           },
         ),
-        appBar: AppBar(
-          title: Text(
-            "Mis Recetas",
-            style: TextStyle(color: Colors.white, fontSize: 25),
-          ),
-          centerTitle: true,
-          backgroundColor: Color(0xff29304B),
-        ),
+        // appBar: AppBar(
+        //   title: Text(
+        //     "Mis Recetas",
+        //     style: TextStyle(color: Colors.white, fontSize: 25),
+        //   ),
+        //   centerTitle: true,
+        //   backgroundColor: Color(0xff29304B),
+        // ),
         body: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
           child: Column(
