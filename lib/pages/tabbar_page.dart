@@ -8,50 +8,36 @@ class TabBarPage extends StatefulWidget {
   State<TabBarPage> createState() => _TabBarPageState();
 }
 
-class _TabBarPageState extends State<TabBarPage>
-    with SingleTickerProviderStateMixin {
+class _TabBarPageState extends State<TabBarPage> {
   final pageController = PageController();
-  TabController? _tabController;
-
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    _tabController = TabController(length: 2, vsync: this);
-  }
+  int currentIndex = 0;
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(
-          bottom: TabBar(
-            controller: _tabController,
-            tabs: [
-              Tab(
-                text: "hola",
-              ),
-              Tab(
-                text: "chau",
-              )
-            ],
-          ),
+        bottomNavigationBar: CurvedNavigationBar(
+          index: currentIndex,
+          items: [
+            Icon(Icons.home),
+            Icon(Icons.list),
+          ],
+          onTap: (index) {
+            pageController.animateToPage(
+              index,
+              duration: Duration(seconds: 2),
+              curve: Curves.linear,
+            );
+            currentIndex = index;
+            setState(() {});
+          },
         ),
-        // bottomNavigationBar: CurvedNavigationBar(
-        //   items: [
-        //     Icon(Icons.home),
-        //     Icon(Icons.list),
-        //   ],
-        //   onTap: (index) {
-        //     pageController.animateToPage(
-        //       index,
-        //       duration: Duration(seconds: 2),
-        //       curve: Curves.linear,
-        //     );
-        //   },
-        // ),
-        body: TabBarView(
-          controller: _tabController,
+        body: PageView(
+          controller: pageController,
+          onPageChanged: (index) {
+            currentIndex = index;
+            setState(() {});
+          },
           children: [
             HomePage(),
             ListViewPage(),
