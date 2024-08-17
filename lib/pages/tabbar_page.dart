@@ -17,9 +17,15 @@ class _TabBarPageState extends State<TabBarPage> {
     return SafeArea(
       child: Scaffold(
         bottomNavigationBar: CurvedNavigationBar(
+          buttonBackgroundColor: Colors.yellow,
+          backgroundColor: Colors.cyan,
+          color: Colors.red,
           index: currentIndex,
           items: [
-            Icon(Icons.home),
+            Icon(
+              Icons.home,
+              color: Colors.white,
+            ),
             Icon(Icons.list),
           ],
           onTap: (index) {
