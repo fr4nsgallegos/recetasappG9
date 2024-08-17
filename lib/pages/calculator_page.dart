@@ -11,6 +11,9 @@ class CalculatorPage extends StatefulWidget {
 class _CalculatorPageState extends State<CalculatorPage> {
   String answer = "";
   String input = "";
+  double num1 = 0.0;
+  double num2 = 0.0;
+  String operator = "";
 
   void pressNumberButton(String number) {
     input != '0' ? input += number : input = number;
@@ -32,6 +35,25 @@ class _CalculatorPageState extends State<CalculatorPage> {
     answer.length != 0 ? input = input.substring(0, input.length - 1) : "0";
   }
 
+  void pressIgualButton() {
+    switch (operator) {
+      case "+":
+        answer = (num1 + num2).toString();
+        break;
+      case "-":
+        answer = (num1 - num2).toString();
+        break;
+      case "*":
+        answer = (num1 * num2).toString();
+        break;
+      case "/":
+        answer = (num1 / num2).toString();
+        break;
+      default:
+        break;
+    }
+  }
+
   void buttonPressed(String textButton) {
     if (textButton == "AC") {
       pressACButton();
@@ -39,7 +61,13 @@ class _CalculatorPageState extends State<CalculatorPage> {
         textButton == "-" ||
         textButton == "*" ||
         textButton == "/") {
+      num1 = double.parse(input);
+      operator = textButton;
+      input = "0";
     } else if (textButton == "=") {
+      num2 = double.parse(input);
+      pressIgualButton();
+      input = answer;
     } else if (textButton == '.') {
       pressDecimalButton();
     } else if (textButton == "<-") {
