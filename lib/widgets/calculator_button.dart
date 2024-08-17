@@ -25,11 +25,13 @@ class CalculatorButton extends StatelessWidget {
           alignment: Alignment.center,
           height: MediaQuery.of(context).size.height / 11,
           width: MediaQuery.of(context).size.width / 7,
-          child: Text(
-            numero,
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 30,
+          child: FittedBox(
+            child: Text(
+              numero,
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 30,
+              ),
             ),
           ),
         ),
