@@ -20,6 +20,17 @@ class _FuturePageState extends State<FuturePage> {
     });
   }
 
+  Future<List<Map<String, dynamic>>> getItems() {
+    return Future.delayed(Duration(seconds: 6), () {
+      return [
+        {"id": 1, "name": "zapatos"},
+        {"id": 2, "name": "medias"},
+        {"id": 3, "name": "boxers"},
+        {"id": 4, "name": "camisas"},
+      ];
+    });
+  }
+
   void llenarTitulo() async {
     titulo = await getTitle();
     setState(() {});
@@ -86,7 +97,28 @@ class _FuturePageState extends State<FuturePage> {
                   );
                 }
               },
-            )
+            ),
+            FutureBuilder(
+              future: getItems(),
+              builder: (BuildContext context, AsyncSnapshot snapshot) {
+                if (snapshot.hasData) {
+                  List<Map<String, dynamic>> auxList = snapshot.data;
+                  return Expanded(
+                    child: ListView.builder(
+                      itemCount: auxList.length,
+                      itemBuilder: (BuildContext context, int index) {
+                        return Text(auxList[index]["name"]);
+                      },
+                    ),
+                  );
+                } else {
+                  return Container(
+                      height: 500,
+                      alignment: Alignment.center,
+                      child: CircularProgressIndicator());
+                }
+              },
+            ),
           ],
         ),
       ),
