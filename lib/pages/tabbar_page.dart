@@ -26,23 +26,24 @@ class _TabBarPageState extends State<TabBarPage> {
           centerTitle: true,
         ),
         bottomNavigationBar: CurvedNavigationBar(
-          buttonBackgroundColor: Colors.yellow,
-          backgroundColor: Colors.cyan,
-          color: Colors.red,
+          buttonBackgroundColor: pagesDetails[currentIndex].buttonColorOption,
+          backgroundColor: pagesDetails[currentIndex].bgColor,
+          // color: Colors.red,
           index: currentIndex,
           items: [
+            ...pagesDetails.map((e) => e.icono).toList(),
             // Icon(
             //   Icons.home,
             //   color: Colors.white,
             // ),
             // Icon(Icons.list),
-            pagesDetails[0].icono,
-            pagesDetails[1].icono,
+            // pagesDetails[0].icono,
+            // pagesDetails[1].icono,
           ],
           onTap: (index) {
             pageController.animateToPage(
               index,
-              duration: Duration(seconds: 2),
+              duration: Duration(milliseconds: 500),
               curve: Curves.linear,
             );
             currentIndex = index;
@@ -56,11 +57,12 @@ class _TabBarPageState extends State<TabBarPage> {
             setState(() {});
           },
           children: [
+            ...pagesDetails.map((e) => e.pageName).toList(),
             // HomePage(
             //   bgColor: Color(0xff2B2E4A),
             // ),
-            pagesDetails[0].pageName,
-            pagesDetails[1].pageName,
+            // pagesDetails[0].pageName,
+            // pagesDetails[1].pageName,
           ],
         ),
       ),

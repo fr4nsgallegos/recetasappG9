@@ -4,6 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:recetasappg9/widgets/calculator_button.dart';
 
 class CalculatorPage extends StatefulWidget {
+  Color bgColor;
+  CalculatorPage({required this.bgColor});
+
   @override
   State<CalculatorPage> createState() => _CalculatorPageState();
 }
@@ -83,7 +86,7 @@ class _CalculatorPageState extends State<CalculatorPage> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: Color(0xff1C1C1C),
+        backgroundColor: widget.bgColor,
         body: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16),
           child: Column(
@@ -93,7 +96,7 @@ class _CalculatorPageState extends State<CalculatorPage> {
                 margin: EdgeInsets.symmetric(vertical: 16),
                 padding: EdgeInsets.all(16),
                 width: double.infinity,
-                height: MediaQuery.of(context).size.height / 3,
+                height: MediaQuery.of(context).size.height / 4,
                 decoration: BoxDecoration(
                   color: Color(0xff505050),
                   borderRadius: BorderRadius.circular(25),
@@ -103,7 +106,7 @@ class _CalculatorPageState extends State<CalculatorPage> {
                   style: TextStyle(color: Colors.white, fontSize: 65),
                 ),
               ),
-              SizedBox(height: 32),
+              SizedBox(height: 8),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
