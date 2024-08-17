@@ -8,3 +8,11 @@ class FoodModel {
     required this.urlImage,
   });
 }
+
+List<FoodModel> foodModeList = [
+  FoodModel(
+      title: "Lomo saltado", description: "Descri lomo", urlImage: "wwww"),
+  FoodModel(title: "Ceviceh", description: "Cevivhe", urlImage: "wwww"),
+  FoodModel(
+      title: "Causa rellena", description: "Descri causa", urlImage: "wwww"),
+];

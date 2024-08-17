@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:recetasappg9/models/food_model.dart';
 
 class FuturePage extends StatefulWidget {
   @override
@@ -49,6 +50,12 @@ class _FuturePageState extends State<FuturePage> {
       setState(() {});
     });
     llenarProducts();
+  }
+
+  Future<List<FoodModel>> getFood() {
+    return Future.delayed(Duration(seconds: 2), () {
+      return foodModeList;
+    });
   }
 
   @override
@@ -119,6 +126,26 @@ class _FuturePageState extends State<FuturePage> {
                 }
               },
             ),
+            FutureBuilder(
+              future: getFood(),
+              builder: (context, snapshot) {
+                if (snapshot.hasData) {
+                  List<FoodModel> auxFoodList = snapshot.data!;
+                  return Expanded(
+                    child: ListView.builder(
+                      itemCount: auxFoodList.length,
+                      itemBuilder: (BuildContext context, int index) {
+                        return ListTile(
+                          title: Text(auxFoodList[index].title),
+                        );
+                      },
+                    ),
+                  );
+                } else {
+                  return CircularProgressIndicator();
+                }
+              },
+            )
           ],
         ),
       ),
